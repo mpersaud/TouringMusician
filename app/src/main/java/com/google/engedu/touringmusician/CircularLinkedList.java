@@ -54,7 +54,6 @@ public class CircularLinkedList implements Iterable<Point> {
             head.next=head;
             head.prev=head;
 
-
         }
         else {
 
@@ -93,6 +92,38 @@ public class CircularLinkedList implements Iterable<Point> {
     }
 
     public void insertNearest(Point p) {
+            System.out.println("Closest");
+            CircularLinkedListIterator iter = new CircularLinkedListIterator();
+            Node newNode = new Node(p);
+
+            if(head==null){
+                head=newNode;
+                head.next=newNode;
+                head.prev=newNode;
+
+            }else {
+
+
+            Node min = null;
+            float minDistance = 99999;
+            while (iter.hasNext()) {
+                Point temp = iter.current.point;
+                if (minDistance > distanceBetween(p, temp)) {
+                    minDistance = distanceBetween(p, temp);
+                    min = iter.current;
+                }
+                iter.next();
+
+            }
+            newNode.next=min.next;
+            min.next=newNode;
+            newNode.prev=min;
+
+            //System.out.println(min.point);
+
+        }
+
+
         /**
          **
          **  YOUR CODE GOES HERE
