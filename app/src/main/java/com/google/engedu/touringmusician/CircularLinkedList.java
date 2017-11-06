@@ -33,10 +33,16 @@ public class CircularLinkedList implements Iterable<Point> {
         public Node(Point point){
             this.point = point;
         }
+        public Point getPoint(){
+            return point;
+        }
     }
 
     Node head;
     int size =0;
+    public Point getPoint(Node node){
+        return node.getPoint();
+    }
     public boolean isEmpty(){
         return size==0;
     }

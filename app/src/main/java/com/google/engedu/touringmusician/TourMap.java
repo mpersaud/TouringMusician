@@ -27,6 +27,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.Iterator;
+
 public class TourMap extends View {
 
     private Bitmap mapImage;
@@ -45,21 +47,31 @@ public class TourMap extends View {
         super.onDraw(canvas);
         canvas.drawBitmap(mapImage, 0, 0, null);
         Paint pointPaint = new Paint();
-        pointPaint.setColor(Color.RED);
+        pointPaint.setColor(Color.MAGENTA);
+        System.out.println("here");
         /**
          **
          **  YOUR CODE GOES HERE
          **
          **/
+        if(list.isEmpty())return;
+        Point a= list.getPoint(list.head);
         for (Point p : list) {
             /**
              **
              **  YOUR CODE GOES HERE
              **
              **/
+
             canvas.drawCircle(p.x, p.y, 20, pointPaint);
+            if(a.equals(p))continue;
+            Paint linePaint = new Paint();
+            linePaint.setColor(Color.BLACK);
+            canvas.drawLine(a.x,a.y,p.x,p.y,linePaint);
+            a=p;
 
         }
+
         /**
          **
          **  YOUR CODE GOES HERE
