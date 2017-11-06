@@ -58,6 +58,7 @@ public class TourMap extends View {
              **
              **/
             canvas.drawCircle(p.x, p.y, 20, pointPaint);
+
         }
         /**
          **
