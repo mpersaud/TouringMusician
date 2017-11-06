@@ -33,18 +33,14 @@ public class CircularLinkedList implements Iterable<Point> {
         public Node(Point point){
             this.point = point;
         }
-        public Point getPoint(){
-            return point;
-        }
+
     }
 
     Node head;
-    int size =0;
-    public Point getPoint(Node node){
-        return node.getPoint();
-    }
+
+
     public boolean isEmpty(){
-        return size==0;
+        return head==null;
     }
     public void insertBeginning(Point p) {
         /**
@@ -57,7 +53,7 @@ public class CircularLinkedList implements Iterable<Point> {
             head=temp;
             head.next=head;
             head.prev=head;
-            size++;
+
 
         }
         else {
@@ -68,7 +64,7 @@ public class CircularLinkedList implements Iterable<Point> {
             temp.next=head;
             head=temp;
 
-            size++;
+
         }
 
 
@@ -80,6 +76,14 @@ public class CircularLinkedList implements Iterable<Point> {
 
     public float totalDistance() {
         float total = 0;
+        CircularLinkedListIterator iter = new CircularLinkedListIterator();
+
+        while(iter.hasNext()){
+            Point p1= iter.current.point;
+            Point p2 = iter.current.next.point;
+            total += distanceBetween(p1,p2);
+            iter.next();
+        }
         /**
          **
          **  YOUR CODE GOES HERE
@@ -106,6 +110,7 @@ public class CircularLinkedList implements Iterable<Point> {
 
     public void reset() {
         head = null;
+
     }
 
     private class CircularLinkedListIterator implements Iterator<Point> {
